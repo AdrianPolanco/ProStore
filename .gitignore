@@ -1,7 +1,6 @@
+ProStoreApi/.vs
 ProStoreApi/bin
 ProStoreApi/obj
-ProStoreApi/Containers
+ProStoreApi/Properties
 ProStoreApi/appsettings.json
 ProStoreApi/appsettings.Development.json
-ProStoreApi/.vs
-ProStoreApi/Properties
