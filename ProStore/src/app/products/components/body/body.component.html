@@ -1,0 +1,13 @@
+<p-panel>
+  <ng-template pTemplate="header" style="background-color: var(--primary-color)">
+    <div class="flex justify-between items-center w-full">
+      <div class="flex align-items-center">
+        <i class="pi pi-objects-column mr-2" style="color: var(--primary-color)"></i>
+        <span style="color: var(--primary-color)">Our products</span>
+      </div>
+      <p-button label="Add product" icon="pi pi-plus" styleClass="background-color: var(--primary-color)" class="p-button-rounded" />
+    </div>
+  </ng-template>
+  <products-table [products]="products"></products-table>
+
+</p-panel>
