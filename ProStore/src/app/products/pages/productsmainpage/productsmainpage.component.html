@@ -1,5 +1,6 @@
 <section class="p-3">
   <app-header></app-header>
   <products-body></products-body>
+  <p-message [text]="message?.detail" [severity]="message?.severity" *ngIf="message !== null" />
 </section>
 

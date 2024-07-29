@@ -5,9 +5,38 @@
         <i class="pi pi-objects-column mr-2" style="color: var(--primary-color)"></i>
         <span style="color: var(--primary-color)">Our products</span>
       </div>
-      <p-button label="Add product" icon="pi pi-plus" styleClass="background-color: var(--primary-color)" class="p-button-rounded" />
+      <p-button label="Add product" icon="pi pi-plus" styleClass="background-color: var(--primary-color)"
+      (onClick)="onToggleCreateModal()"
+      class="p-button-rounded" />
     </div>
   </ng-template>
   <products-table [products]="products"></products-table>
 
 </p-panel>
+<!-- Create Product Modal-->
+<p-dialog header="Edit Profile" [modal]="true" [(visible)]="visibleCreateModal" [style]="{ width: '25rem' }">
+  <span class="p-text-secondary block mb-5">Create a new product.</span>
+  <form [formGroup]="productToCreate" (ngSubmit)="createProduct()">
+    <div class="flex flex-col align-items-center gap-3 mb-3">
+      <label for="Name" class="font-semibold w-6rem">Product name</label>
+      <input pInputText class="flex-auto" autocomplete="off"  formControlName="name" required/>
+      <p-message [severity]="messages[0].severity" [text]="messages[0].detail"
+         *ngIf="this.name?.hasError('required') && this.name?.touched"/>
+      <p-message [severity]="messages[1].severity" [text]="messages[1].detail"
+         *ngIf="this.name?.hasError('minlength') && this.name?.touched"/>
+    </div>
+
+    <div class="flex align-items-center gap-3 mb-5">
+      <label for="Image" class="font-semibold w-6rem">Image</label>
+      <!--Image file input-->
+        <div class="card flex justify-content-center">
+          <p-fileUpload mode="basic" chooseLabel="Choose" chooseIcon="pi pi-upload"
+            accept="image/*" maxFileSize="1000000" (onSelect)="onSelectImage($event)"/>
+        </div>
+    </div>
+    <div class="flex justify-content-end gap-2">
+      <p-button label="Cancel" severity="secondary" (onClick)="onToggleCreateModal()" />
+      <p-button type="submit" label="Save" />
+    </div>
+  </form>
+</p-dialog>

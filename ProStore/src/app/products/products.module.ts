@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PrimeModule } from '../prime/prime.module';
+import { UiModule } from '../ui/ui.module';
 import { ProductsMainPageComponent } from './pages/productsmainpage/productsmainpage.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BodyComponent } from './components/body/body.component';
 import { TableComponent } from './components/table/table.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,12 +14,9 @@ import { TableComponent } from './components/table/table.component';
     ProductsMainPageComponent,
     HeaderComponent,
     BodyComponent,
-    TableComponent
+    TableComponent,
   ],
-  imports: [
-    CommonModule,
-    PrimeModule
-  ],
-  exports: [ProductsMainPageComponent]
+  imports: [CommonModule, UiModule, ReactiveFormsModule],
+  exports: [ProductsMainPageComponent],
 })
-export class ProductsModule { }
+export class ProductsModule {}
