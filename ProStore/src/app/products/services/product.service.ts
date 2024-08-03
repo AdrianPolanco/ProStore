@@ -27,11 +27,16 @@ export class ProductService {
   }
 
   update(product: Product): Observable<ProductResponse> | null {
-    if (!product.id || !product.name || !product.imageUrl) return null;
+    if (!product?.id || !product?.name || !product?.imageUrl) return null;
+    if(!product) return null;
+
+    const formData = new FormData();
+    formData.append('Name', product.name);
+    formData.append('Image', product.imageUrl);
 
     return this.httpClient.put<ProductResponse>(
       `${baseApiUrl}/${product.id}`,
-      product
+      formData
     );
   }
 

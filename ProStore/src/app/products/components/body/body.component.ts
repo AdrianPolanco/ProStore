@@ -6,6 +6,7 @@ import { UploadEvent } from 'primeng/fileupload';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductRequest } from '../../interfaces/product-request.interface';
 import { ProductResponse } from '../../interfaces/product-response.interface';
+import { messages } from '../../utils/messages';
 
 @Component({
   selector: 'products-body',
@@ -20,38 +21,7 @@ export class BodyComponent implements OnInit {
 
   @Output() onProductCreated = new EventEmitter<ProductResponse>();
 
-  messages: Message[] = [
-    {
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Product name is required',
-      closable: true,
-    },
-    {
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Product name must be at least 3 characters',
-      closable: true,
-    },
-    {
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Product image is required',
-      closable: true,
-    },
-    {
-      severity: 'success',
-      summary: 'Success',
-      detail: 'Product created successfully',
-      closable: true,
-    },
-    {
-      severity: 'error',
-      summary: 'Error',
-      detail: 'An error occurred while creating the product',
-      closable: true,
-    },
-  ];
+  messages: Message[] = messages
 
   products: Product[] = [];
   productToCreate: FormGroup = new FormGroup({

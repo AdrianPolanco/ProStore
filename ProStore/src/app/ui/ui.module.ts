@@ -10,6 +10,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { ImageModule } from 'primeng/image';
 
 
 
@@ -24,7 +25,8 @@ import { MessageModule } from 'primeng/message';
     FileUploadModule,
     ToastModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    ImageModule
   ],
   providers: [MessageService],
 })

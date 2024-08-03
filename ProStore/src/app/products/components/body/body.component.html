@@ -10,12 +10,12 @@
       class="p-button-rounded" />
     </div>
   </ng-template>
-  <products-table [products]="products"></products-table>
+  <products-table [products]="products" (onUpdatedProduct)="getProducts()"></products-table>
 
 </p-panel>
 <!-- Create Product Modal-->
-<p-dialog header="Edit Profile" [modal]="true" [(visible)]="visibleCreateModal" [style]="{ width: '25rem' }">
-  <span class="p-text-secondary block mb-5">Create a new product.</span>
+<p-dialog header="Create Product" [modal]="true" [(visible)]="visibleCreateModal" [style]="{ width: '25rem' }">
+  <span class="p-text-secondary block mb-5">Update this product.</span>
   <form [formGroup]="productToCreate" (ngSubmit)="createProduct()">
     <div class="flex flex-col align-items-center gap-3 mb-3">
       <label for="Name" class="font-semibold w-6rem">Product name</label>
