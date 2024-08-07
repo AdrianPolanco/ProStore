@@ -1,8 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../interfaces/product.interface';
 import { Message, MessageService } from 'primeng/api';
-import { UploadEvent } from 'primeng/fileupload';
+import { FileUpload, UploadEvent } from 'primeng/fileupload';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductRequest } from '../../interfaces/product-request.interface';
 import { ProductResponse } from '../../interfaces/product-response.interface';
@@ -15,11 +15,11 @@ import { messages } from '../../utils/messages';
 })
 export class BodyComponent implements OnInit {
   constructor(
-    private productService: ProductService,
-    private messageService: MessageService
+    private productService: ProductService
   ) {}
 
   @Output() onProductCreated = new EventEmitter<ProductResponse>();
+  @ViewChild('fileUpload') fileUpload!: FileUpload;
 
   messages: Message[] = messages
 
@@ -48,13 +48,20 @@ export class BodyComponent implements OnInit {
       this.products = products;
     });
   }
-  onToggleCreateModal(): void {
+  onToggleCreateModal(): void{
     this.visibleCreateModal = !this.visibleCreateModal;
+    this.resetForm();
+  }
+
+  resetForm(): void {
+    if (!this.visibleCreateModal) {
+      this.productToCreate.reset();
+      this.fileUpload.clear();
+    }
   }
 
   onCreateProduct(success: boolean, detail: string): void {
     this.onProductCreated.emit({ success, message: detail });
-
   }
 
   createProduct(): void {
@@ -68,6 +75,7 @@ export class BodyComponent implements OnInit {
       this.onCreateProduct(response.success, response.message);
       this.visibleCreateModal = false;
       this.productToCreate.reset();
+      this.fileUpload.clear();
       this.getProducts();
     });
   }
@@ -75,6 +83,5 @@ export class BodyComponent implements OnInit {
   onSelectImage(event: any): void {
     const file = event.files[0];
     if (file) this.productToCreate.patchValue({ imageUrl: file });
-    console.log(file);
   }
 }

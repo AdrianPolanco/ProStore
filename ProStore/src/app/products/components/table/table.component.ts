@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { messages } from '../../utils/messages';
 import { Message } from 'primeng/api';
 import { ProductService } from '../../services/product.service';
+import { ProductResponse } from '../../interfaces/product-response.interface';
 
 @Component({
   selector: 'products-table',
@@ -24,6 +25,9 @@ export class TableComponent {
   messages: Message[] = messages;
 
   visibleUpdateModal: boolean = false;
+  visibleDeleteModal: boolean = false;
+
+  @Output() onProductDeleted = new EventEmitter<ProductResponse>();
 
   currentProduct: Product | null = null;
 
@@ -39,6 +43,11 @@ export class TableComponent {
     this.populateProductForm(product);
   }
 
+  onOpenDeleteModal(product: Product): void {
+    this.visibleDeleteModal = !this.visibleDeleteModal;
+    this.currentProduct = product;
+  }
+
   private populateProductForm(product: Product): void {
     this.currentProduct = product;
     this.updateProductForm.patchValue({
@@ -46,13 +55,17 @@ export class TableComponent {
       name: product.name,
       imageUrl: `${this.baseAzureUrl}/${product.imageUrl}`,
     });
-    console.log('Product to update:', this.updateProductForm.value);
   }
 
   onCloseUpdateModal(): void {
     this.visibleUpdateModal = false;
     this.currentProduct = null;
     this.updateProductForm.reset();
+  }
+
+  onCloseDeleteModal(): void {
+    this.visibleDeleteModal = false;
+    this.currentProduct = null;
   }
 
   updateProduct() {
@@ -66,13 +79,10 @@ export class TableComponent {
       imageUrl: formValue.image,
     };
 
-    console.log('Product to update:', this.currentProduct);
-
     if (this.currentProduct) {
       this.productService.update(this.currentProduct)?.subscribe((product) => {
         if(!product) return;
         this.onCloseUpdateModal();
-        console.log('Product updated:', product);
         this.onUpdatedProduct.emit("Updated product successfully");
       })
     }
@@ -88,5 +98,13 @@ export class TableComponent {
       this.updateProductForm.patchValue({ image: file });
       reader.readAsDataURL(file);
     }
+  }
+
+  deleteProduct() {
+    if(this.currentProduct)
+      this.productService.delete(this.currentProduct.id).subscribe((productResponse) => {
+        this.onProductDeleted.emit(productResponse);
+        this.onCloseDeleteModal();
+      });
   }
 }

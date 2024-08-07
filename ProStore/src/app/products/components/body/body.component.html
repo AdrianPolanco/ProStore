@@ -10,11 +10,11 @@
       class="p-button-rounded" />
     </div>
   </ng-template>
-  <products-table [products]="products" (onUpdatedProduct)="getProducts()"></products-table>
+  <products-table [products]="products" (onUpdatedProduct)="getProducts()" (onProductDeleted)="getProducts()"></products-table>
 
 </p-panel>
 <!-- Create Product Modal-->
-<p-dialog header="Create Product" [modal]="true" [(visible)]="visibleCreateModal" [style]="{ width: '25rem' }">
+<p-dialog header="Create Product" [modal]="true" [(visible)]="visibleCreateModal" [style]="{ width: '25rem' }" (onHide)="resetForm()">
   <span class="p-text-secondary block mb-5">Update this product.</span>
   <form [formGroup]="productToCreate" (ngSubmit)="createProduct()">
     <div class="flex flex-col align-items-center gap-3 mb-3">
@@ -31,7 +31,7 @@
       <!--Image file input-->
         <div class="card flex justify-content-center">
           <p-fileUpload mode="basic" chooseLabel="Choose" chooseIcon="pi pi-upload"
-            accept="image/*" maxFileSize="1000000" (onSelect)="onSelectImage($event)"/>
+            accept="image/*" maxFileSize="1000000" (onSelect)="onSelectImage($event)" #fileUpload/>
         </div>
     </div>
     <div class="flex justify-content-end gap-2">

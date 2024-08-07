@@ -1,0 +1,8 @@
+.red-button {
+  background-color: var(--red-500) !important;
+  border: none !important;
+  color: white !important;
+}
+.red-button .p-button:enabled:hover {
+  background-color: darkred !important;
+}

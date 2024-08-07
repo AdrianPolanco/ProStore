@@ -40,7 +40,7 @@ export class ProductService {
     );
   }
 
-  delete(id: number): Observable<ProductResponse> {
+  delete(id: string): Observable<ProductResponse> {
     return this.httpClient.delete<ProductResponse>(`${baseApiUrl}/${id}`);
   }
 }
