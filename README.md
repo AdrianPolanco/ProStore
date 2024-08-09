@@ -1,6 +1,8 @@
 
 # ProStore
-
+![image](https://github.com/user-attachments/assets/e02f1f82-9e49-432c-a54b-46de04c5bd11)
+![image](https://github.com/user-attachments/assets/42653df1-ec49-486f-8de5-2ec797105c9f)
+![image](https://github.com/user-attachments/assets/dcafb2e3-d672-4229-abcb-947ea47cd622)
 ProStore es un pequeño proyecto que permite la gestión de productos mediante operaciones CRUD (Crear, Leer, Actualizar, Borrar). Las imágenes de los productos se suben y editan en Azure Blob Storage. La API está desarrollada en .NET 8 y el frontend en Angular 18 utilizando PrimeNG.
 
 ## Requisitos
@@ -69,9 +71,7 @@ Asegúrate de configurar el archivo `appsettings.json` con tus credenciales de A
 ```
 
 ### Frontend
-![image](https://github.com/user-attachments/assets/e02f1f82-9e49-432c-a54b-46de04c5bd11)
-![image](https://github.com/user-attachments/assets/42653df1-ec49-486f-8de5-2ec797105c9f)
-![image](https://github.com/user-attachments/assets/dcafb2e3-d672-4229-abcb-947ea47cd622)
+
 
 Configura el archivo `environment.ts` con la URL de tu API:
 
