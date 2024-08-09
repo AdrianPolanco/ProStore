@@ -9,7 +9,7 @@ ProStore es un pequeño proyecto, que permite la gestión de productos mediante 
 
 ## Requisitos
 
-## Cloud
+### Cloud
 - Cuenta propia de Azure (ya que las credenciales no estan subidas en este repositorio)
 - Storage Account
 - Blob Container
