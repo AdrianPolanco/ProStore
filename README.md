@@ -1,6 +1,3 @@
-Aquí tienes una documentación básica para tu proyecto "ProStore" en GitHub:
-
----
 
 # ProStore
 
